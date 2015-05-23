@@ -1,5 +1,5 @@
 # binwrap
-Convenience wrappers for your command line favorites. Simply put, CLI tools are decorated with convenience functions to do things like `curl finlink url` instead of `curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`.
+Convenience wrappers for your command line favorites. Simply put, CLIs are decorated with convenience functions to do things like `curl finlink url` instead of `curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`.
 
 ## Install
 Wrappers must be used at the `.bash_profile` level. You can simply copy and paste there or you could use a more modular approach:
