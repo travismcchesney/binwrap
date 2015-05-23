@@ -1,4 +1,4 @@
-# bin-wrappers
+# binwrap
 Convenience wrappers for your command line favorites. Simply put, CLI tools are decorated with convenience functions to do things like `curl finlink url` instead of `curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`.
 
 ## Install
@@ -16,8 +16,8 @@ unset file;
 And then simply use `curl` to add wrappers you would like to use into `~/.wrappers`:
 
 ```bash
-curl https://raw.githubusercontent.com/rockymadden/bin-wrappers/master/curl >> ~/.wrappers
-curl https://raw.githubusercontent.com/rockymadden/bin-wrappers/master/docker >> ~/.wrappers
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/curl >> ~/.wrappers
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/docker >> ~/.wrappers
 ```
 
 ## cURL
