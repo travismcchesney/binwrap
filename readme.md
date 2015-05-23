@@ -4,7 +4,7 @@ Convenience wrappers for your command line favorites. Simply put, CLI tools are 
 ## Install
 Wrappers must be used at the `.bash_profile` level. You can simply copy and paste there or you could use a more modular approach:
 
-In you `.bash_profile` you could source your modular dotfiles:
+In `.bash_profile` source your modular dotfiles:
 ```bash
 # Load dotfiles.
 for file in ~/.{exports,aliases,wrappers,functions,sources}; do
