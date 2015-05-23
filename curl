@@ -1,0 +1,24 @@
+curl() {
+  local BIN=$(which curl)
+
+  case "$1" in
+    finlink)
+      $BIN "$2" -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"
+    ;;
+    follow)
+      local resp=$($BIN "$2" -s -I -o /dev/null -w "%{http_code}|%{redirect_url}")
+      IFS='|' read -a tuple <<< "$resp"
+
+      echo "${tuple[0]}: $2"
+
+      case "${tuple[0]}" in
+        301|302|303|307|308)
+          curl follow "${tuple[1]}"
+        ;;
+      esac
+    ;;
+    *)
+      $BIN "${@:1}"
+    ;;
+  esac
+}

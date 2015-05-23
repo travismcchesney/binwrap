@@ -1,0 +1,30 @@
+docker() {
+  local BIN=$(which docker)
+
+  case "$1" in
+    bash)
+      $BIN exec -it "$2" bash
+    ;;
+    daemonize)
+      $BIN run -d -P "${@:2}"
+    ;;
+    interact)
+      $BIN run -i -t -P "${@:2}"
+    ;;
+    ip)
+      $BIN inspect --format '{{ .NetworkSettings.IPAddress }}' "$2"
+    ;;
+    rmall)
+      docker stopall && $BIN rm $($BIN ps -a -q)
+    ;;
+    rmiall)
+      docker stopall && docker rmall && $BIN rmi $($BIN images -q)
+    ;;
+    stopall)
+      $BIN stop $($BIN ps -a -q)
+    ;;
+    *)
+      $BIN "${@:1}"
+    ;;
+  esac
+}
