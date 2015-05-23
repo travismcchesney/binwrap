@@ -40,6 +40,12 @@ $ curl follow http://example.com/301
 200: http://example.com/200
 ```
 
+```bash
+$ curl follow http://example.com/302
+302: http://example.com/302
+200: http://example.com/200
+```
+
 ## Docker
 
 __bash:__ Connect to a running container interactively via bash.
