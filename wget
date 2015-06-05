@@ -1,0 +1,12 @@
+wget() {
+  local BIN=$(which wget)
+
+  case "$1" in
+    mirror)
+      $BIN -mkEpnp "$2"
+    ;;
+    *)
+      $BIN "${@:1}"
+    ;;
+  esac
+}
