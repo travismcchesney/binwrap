@@ -3,7 +3,7 @@ wget() {
 
   case "$1" in
     mirror)
-      $BIN -mkEpnp "$2"
+      $BIN -mkpnp "$2"
     ;;
     *)
       $BIN "${@:1}"
