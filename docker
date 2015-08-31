@@ -8,20 +8,41 @@ docker() {
     daemonize)
       $BIN run -d -P "${@:2}"
     ;;
+    flatten)
+      $BIN export $($BIN run -d "$2" /bin/bash) | $BIN import - "$3"
+    ;;
     interact)
       $BIN run -i -t -P "${@:2}"
     ;;
     ip)
-      $BIN inspect --format '{{ .NetworkSettings.IPAddress }}' "$2"
+      $BIN inspect -f '{{.NetworkSettings.IPAddress}}' "$2"
+    ;;
+    mac)
+      $BIN inspect -f '{{.NetworkSettings.MacAddress}}' "$2"
+    ;;
+    ports)
+      $BIN inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' "$2"
     ;;
     rmall)
-      docker stopall && $BIN rm $($BIN ps -a -q)
+      docker stopall && $BIN rm "${@:2}" $($BIN ps -a -q)
+    ;;
+    rmstopped)
+      $BIN rm "${@:2}" $($BIN ps -a -q -f 'status=exited')
     ;;
     rmiall)
-      docker stopall && docker rmall && $BIN rmi $($BIN images -q)
+      docker stopall && docker rmall && $BIN rmi "${@:2}" $($BIN images -q)
+    ;;
+    rmidangling)
+      $BIN rmi "${@:2}" $($BIN images -q -f 'dangling=true')
+    ;;
+    statsall)
+      $BIN stats "${@:2}" $($BIN ps -q)
     ;;
     stopall)
-      $BIN stop $($BIN ps -a -q)
+      $BIN stop "${@:2}" $($BIN ps -a -q)
+    ;;
+    volumes)
+      $BIN inspect -f '{{$conf := .Mounts}} {{(index $conf 0).Destination}} -> {{(index $conf 0).Source}}' "$2"
     ;;
     *)
       $BIN "${@:1}"
