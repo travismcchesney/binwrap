@@ -1,8 +1,12 @@
 # binwrap
-Convenience wrappers for your command line favorites. Simply put, CLIs are decorated with convenience functions to do things like `curl finlink url` instead of `curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`.
+Convenience wrappers for your command line favorites. Simply put, CLIs are decorated with
+convenience functions to do things like `curl finlink url` instead of
+`curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`, while allowing you to do
+the latter without caveats.
 
 ## Install
-Wrappers must be used at the `.bash_profile` level. You can simply copy and paste there or you could use a more modular approach:
+Wrappers must be used at the `.bash_profile` level. You can simply copy and paste there or you
+can use a more modular approach:
 
 In `.bash_profile` source your modular dotfiles:
 ```bash
@@ -18,6 +22,8 @@ And then simply use `curl` to add wrappers you would like to use into `~/.wrappe
 ```bash
 curl https://raw.githubusercontent.com/rockymadden/binwrap/master/curl >> ~/.wrappers
 curl https://raw.githubusercontent.com/rockymadden/binwrap/master/docker >> ~/.wrappers
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/vegeta >> ~/.wrappers
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/wget >> ~/.wrappers
 ```
 
 ## cURL
