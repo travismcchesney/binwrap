@@ -1,0 +1,12 @@
+vegeta() {
+  local BIN=$(which vegeta)
+
+  case "$1" in
+    GET)
+      echo "GET $2" | vegeta attack -duration="$3" -rate="$4" | tee /tmp/vegeta.bin | vegeta report
+    ;;
+    *)
+      $BIN "${@:1}"
+    ;;
+  esac
+}
