@@ -24,22 +24,42 @@ docker() {
       $BIN inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' "$2"
     ;;
     rmall)
-      docker stopall && $BIN rm "${@:2}" $($BIN ps -a -q)
+      ps=$($BIN ps -a -q)
+
+      if [ -n "$ps" ]; then
+        docker stopall && $BIN rm "${@:2}" $ps
+      fi
     ;;
     rmstopped)
-      $BIN rm "${@:2}" $($BIN ps -a -q -f 'status=exited')
+      ps=$($BIN ps -a -q -f 'status=exited')
+
+      if [ -n "$ps" ]; then
+        $BIN rm "${@:2}" $ps
+      fi
     ;;
     rmiall)
-      docker stopall && docker rmall && $BIN rmi "${@:2}" $($BIN images -q)
+      images=$($BIN images -q)
+
+      if [ -n "$images" ]; then
+        docker stopall && docker rmall && $BIN rmi "${@:2}" $images
+      fi
     ;;
     rmidangling)
-      $BIN rmi "${@:2}" $($BIN images -q -f 'dangling=true')
+      images=$($BIN images -q -f 'dangling=true')
+
+      if [ -n "$images" ]; then
+        $BIN rmi "${@:2}" $images
+      fi
     ;;
     statsall)
       $BIN stats "${@:2}" $($BIN ps -q)
     ;;
     stopall)
-      $BIN stop "${@:2}" $($BIN ps -a -q)
+      ps=$($BIN ps -a -q)
+
+      if [ -n "$ps" ]; then
+        $BIN stop "${@:2}" $ps
+      fi
     ;;
     volumes)
       $BIN inspect -f '{{$conf := .Mounts}} {{(index $conf 0).Destination}} -> {{(index $conf 0).Source}}' "$2"
