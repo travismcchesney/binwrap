@@ -1,11 +1,18 @@
 # binwrap
 Convenience wrappers for your command line favorites. Simply put, CLIs are decorated with
-subcommands to do things like
-`curl finlink https://google.com`
-instead of
-`curl https://google.com -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`.
+subcommands to do things like:
 
-## Install
+```bash
+$ curl finlink https://google.com
+```
+
+_instead of:_
+
+```bash
+$ curl https://google.com -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"
+```
+
+## Installation
 Wrappers must be used at the `.bash_profile` level. You can simply copy and paste there or you
 can use a more modular approach:
 
