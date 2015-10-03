@@ -26,7 +26,7 @@ curl https://raw.githubusercontent.com/rockymadden/binwrap/master/vegeta >> ~/.w
 curl https://raw.githubusercontent.com/rockymadden/binwrap/master/wget >> ~/.wrappers
 ```
 
-## cURL
+## `curl`
 __finlink:__ Returns the final status code and URL.
 ```bash
 $ curl finlink http://example.com/301
@@ -52,7 +52,7 @@ $ curl follow http://example.com/302
 200: http://example.com/200
 ```
 
-## Docker
+## `docker`
 
 __bash:__ Connect to a running container interactively via bash.
 ```bash
@@ -87,6 +87,14 @@ $ docker rmiall
 __stopall:__ Stop all running containers.
 ```bash
 $ docker stopall
+```
+
+## `ssh`
+
+__forward:__ Forward port from server to localhost. Presents as though the remote daemon resides
+locally on the same port.
+```bash
+$ ssh forward ip:port
 ```
 
 ## License
