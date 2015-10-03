@@ -2,6 +2,10 @@ curl() {
   local BIN=$(which curl)
 
   case "$1" in
+    binwrap)
+      echo 'usage:'
+      echo '  curl {finlink|follow} <url>'
+    ;;
     finlink)
       $BIN "$2" -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"
     ;;

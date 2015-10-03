@@ -2,6 +2,10 @@ wget() {
   local BIN=$(which wget)
 
   case "$1" in
+    binwrap)
+      echo 'usage:'
+      echo '  wget mirror <baseurl>'
+    ;;
     mirror)
       $BIN -mkpnp "$2"
     ;;

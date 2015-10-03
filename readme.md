@@ -27,75 +27,15 @@ curl https://raw.githubusercontent.com/rockymadden/binwrap/master/vegeta >> ~/.w
 curl https://raw.githubusercontent.com/rockymadden/binwrap/master/wget >> ~/.wrappers
 ```
 
-## `curl`
-__finlink:__ Returns the final status code/URL.
+## Usage
+To see the available binwrap subcommands, and their usage, perform execute the `binwrap` subcommand
+on any wrapped CLI:
 ```bash
-$ curl finlink http://example.com/301
-200: http://example.com/200
-```
-
-```bash
-$ curl finlink http://example.com/404
-404: http://example.com/404
-```
-
-__follow:__ Returns each status code/URL until final resolution (inclusive).
-```bash
-$ curl follow http://example.com/301
-301: http://example.com/301
-302: http://example.com/302
-200: http://example.com/200
-```
-
-```bash
-$ curl follow http://example.com/302
-302: http://example.com/302
-200: http://example.com/200
-```
-
-## `docker`
-
-__bash:__ Connect to a running container interactively via bash.
-```bash
-$ docker bash container-name
-```
-
-__daemonize:__
-```bash
-$ docker daemonize base /bin/echo hello
-```
-
-__interact:__
-```bash
-$ docker interact base /bin/bash
-```
-
-__ip:__ Get a running container's IP address.
-```bash
-$ docker ip container-name
-```
-
-__rmall:__ Stop all running containers and remove them.
-```bash
-$ docker rmall
-```
-
-__rmiall:__ Stop all running containers and remove all images.
-```bash
-$ docker rmiall
-```
-
-__stopall:__ Stop all running containers.
-```bash
-$ docker stopall
-```
-
-## `ssh`
-
-__forward:__ Forward port from server to localhost. Presents as though the remote daemon resides
-locally on the same port.
-```bash
-$ ssh forward ip:port
+$ curl binwrap
+$ docker binwrap
+$ ssh binwrap
+$ vegeta binwrap
+$ wget binwrap
 ```
 
 ## License

@@ -2,6 +2,10 @@ vegeta() {
   local BIN=$(which vegeta)
 
   case "$1" in
+    binwrap)
+      echo 'usage:'
+      echo '  vegeta GET <url>'
+    ;;
     GET)
       echo "GET $2" | vegeta attack -duration="$3" -rate="$4" | tee /tmp/vegeta.bin | vegeta report
     ;;

@@ -2,6 +2,10 @@ ssh() {
   local BIN=$(which ssh)
 
   case "$1" in
+    binwrap)
+      echo 'usage:'
+      echo '  ssh forward <ip>:<port>'
+    ;;
     forward)
       a=(${2//:/ })
       $BIN -N -L ${a[1]}:localhost:${a[1]} -l $(whoami) ${a[0]} &

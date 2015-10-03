@@ -2,6 +2,18 @@ docker() {
   local BIN=$(which docker)
 
   case "$1" in
+    binwrap)
+      echo 'usage:'
+      echo '  docker {rmall|rmstopped|rmiall|rmidangling|statsall|stopall}'
+      echo '  docker bash <container>'
+      echo '  docker daemonize <image> <command>'
+      echo '  docker flatten <image> <new image>'
+      echo '  docker interact <image> <command>'
+      echo '  docker ip <container>'
+      echo '  docker mac <container>'
+      echo '  docker ports <container>'
+      echo '  docker volumes <container>'
+    ;;
     bash)
       $BIN exec -it "$2" bash
     ;;
