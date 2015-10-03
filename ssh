@@ -10,4 +10,6 @@ ssh() {
       $BIN "${@:1}"
     ;;
   esac
+
+  return $?
 }

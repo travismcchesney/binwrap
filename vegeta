@@ -9,4 +9,6 @@ vegeta() {
       $BIN "${@:1}"
     ;;
   esac
+
+  return $?
 }

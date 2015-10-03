@@ -25,41 +25,26 @@ docker() {
     ;;
     rmall)
       ps=$($BIN ps -a -q)
-
-      if [ -n "$ps" ]; then
-        docker stopall && $BIN rm "${@:2}" $ps
-      fi
+      [ -n "$ps" ] && docker stopall && $BIN rm "${@:2}" $ps
     ;;
     rmstopped)
       ps=$($BIN ps -a -q -f 'status=exited')
-
-      if [ -n "$ps" ]; then
-        $BIN rm "${@:2}" $ps
-      fi
+      [ -n "$ps" ] && $BIN rm "${@:2}" $ps
     ;;
     rmiall)
       images=$($BIN images -q)
-
-      if [ -n "$images" ]; then
-        docker stopall && docker rmall && $BIN rmi "${@:2}" $images
-      fi
+      [ -n "$images" ] && docker stopall && docker rmall && $BIN rmi "${@:2}" $images
     ;;
     rmidangling)
       images=$($BIN images -q -f 'dangling=true')
-
-      if [ -n "$images" ]; then
-        $BIN rmi "${@:2}" $images
-      fi
+      [ -n "$images" ] && $BIN rmi "${@:2}" $images
     ;;
     statsall)
       $BIN stats "${@:2}" $($BIN ps -q)
     ;;
     stopall)
       ps=$($BIN ps -a -q)
-
-      if [ -n "$ps" ]; then
-        $BIN stop "${@:2}" $ps
-      fi
+      [ -n "$ps" ] && $BIN stop "${@:2}" $ps
     ;;
     volumes)
       $BIN inspect -f '{{$conf := .Mounts}} {{(index $conf 0).Destination}} -> {{(index $conf 0).Source}}' "$2"
@@ -68,4 +53,6 @@ docker() {
       $BIN "${@:1}"
     ;;
   esac
+
+  return $?
 }
