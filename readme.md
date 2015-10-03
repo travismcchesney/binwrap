@@ -28,10 +28,10 @@ unset file;
 And then simply use `curl` to add wrappers you would like to use into `~/.wrappers`:
 
 ```bash
-curl https://raw.githubusercontent.com/rockymadden/binwrap/master/curl >> ~/.wrappers
-curl https://raw.githubusercontent.com/rockymadden/binwrap/master/docker >> ~/.wrappers
-curl https://raw.githubusercontent.com/rockymadden/binwrap/master/ssh >> ~/.wrappers
-curl https://raw.githubusercontent.com/rockymadden/binwrap/master/vegeta >> ~/.wrappers
+$ curl https://raw.githubusercontent.com/rockymadden/binwrap/master/curl > ~/.wrappers && \
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/docker >> ~/.wrappers && \
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/ssh >> ~/.wrappers && \
+curl https://raw.githubusercontent.com/rockymadden/binwrap/master/vegeta >> ~/.wrappers && \
 curl https://raw.githubusercontent.com/rockymadden/binwrap/master/wget >> ~/.wrappers
 ```
 
