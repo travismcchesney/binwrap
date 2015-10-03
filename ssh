@@ -1,0 +1,13 @@
+ssh() {
+  local BIN=$(which ssh)
+
+  case "$1" in
+    forward)
+      a=(${2//:/ })
+      $BIN -N -L ${a[1]}:localhost:${a[1]} -l $(whoami) ${a[0]} &
+    ;;
+    *)
+      $BIN "${@:1}"
+    ;;
+  esac
+}
