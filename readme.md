@@ -1,6 +1,6 @@
 # binwrap
 Convenience wrappers for your command line favorites. Simply put, CLIs are decorated with
-convenience functions to do things like `curl finlink url` instead of
+convenience subcommands to do things like `curl finlink url` instead of
 `curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`, while allowing you to do
 the latter without caveats.
 
@@ -28,7 +28,7 @@ curl https://raw.githubusercontent.com/rockymadden/binwrap/master/wget >> ~/.wra
 ```
 
 ## `curl`
-__finlink:__ Returns the final status code and URL.
+__finlink:__ Returns the final status code/URL.
 ```bash
 $ curl finlink http://example.com/301
 200: http://example.com/200
@@ -39,7 +39,7 @@ $ curl finlink http://example.com/404
 404: http://example.com/404
 ```
 
-__follow:__ Returns each status code and URL until final resolution (inclusive).
+__follow:__ Returns each status code/URL until final resolution (inclusive).
 ```bash
 $ curl follow http://example.com/301
 301: http://example.com/301
