@@ -1,8 +1,9 @@
 # binwrap
 Convenience wrappers for your command line favorites. Simply put, CLIs are decorated with
-convenience subcommands to do things like `curl finlink url` instead of
-`curl url -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`, while allowing you to do
-the latter without caveats.
+subcommands to do things like
+`curl finlink https://google.com`
+instead of
+`curl https://google.com -s -L -I -o /dev/null -w "%{http_code}: %{url_effective}\\n"`.
 
 ## Install
 Wrappers must be used at the `.bash_profile` level. You can simply copy and paste there or you
@@ -28,8 +29,8 @@ curl https://raw.githubusercontent.com/rockymadden/binwrap/master/wget >> ~/.wra
 ```
 
 ## Usage
-To see the available binwrap subcommands, and their usage, perform execute the `binwrap` subcommand
-on any wrapped CLI:
+To see the available binwrap subcommands, and their usage, execute the `binwrap` subcommand on any
+wrapped CLI:
 ```bash
 $ curl binwrap
 $ docker binwrap
