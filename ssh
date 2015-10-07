@@ -1,19 +1,34 @@
 ssh() {
   local BIN=$(which ssh)
 
-  case "$1" in
+  case "${1}" in
     binwrap)
       echo 'usage:'
-      echo '  ssh forward <ip>:<port>'
+      echo '  ssh forward [username]@<remote_host>:<remote_port> [local_port]'
     ;;
     forward)
+      test "$#" -lt 2 && return 1
+
       a=(${2//:/ })
-      $BIN -N -L ${a[1]}:localhost:${a[1]} -l $(whoami) ${a[0]} &
+
+      case "$#" in
+        3)
+          lp=${3}
+          rp=${a[1]}
+        ;;
+        2)
+          lp=${a[1]}
+          rp=${a[1]}
+        ;;
+      esac
+
+      case "${a[0]}" in
+        *@*) $BIN -N -L ${lp}:localhost:${rp} -l ${a[0]/@/ } & ;;
+        *) $BIN -N -L ${lp}:localhost:${rp} -l $(whoami) ${a[0]} & ;;
+      esac
     ;;
     *)
       $BIN "${@:1}"
     ;;
   esac
-
-  return $?
 }
